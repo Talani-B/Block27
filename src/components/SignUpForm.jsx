@@ -7,6 +7,8 @@ export default function SignUpForm() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
 
+  
+
 async function handleSubmit(event) {
     event.preventDefault();
 
@@ -19,16 +21,16 @@ async function handleSubmit(event) {
                 headers: { 
                   "Content-Type": 'application/json' 
                 }, 
-                body:data });
-                
-                if (!response.ok) { 
-                 throw new Error('Something went wrong');
-                }
-            // Handle the response here
+                body: JSON.stringify({ 
+                  username: "some-username", 
+                  password: "super-secret-999" 
+                }) 
+              })
 
-          } catch (error) {
-      console.error(error);
+    } catch (error) {
+      setError(error.message);
     }
+    
     
   }
     return ( 
