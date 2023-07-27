@@ -1,61 +1,46 @@
 import { useState } from 'react';
 import '../App.css'
 
+
 export default function SignUpForm() { 
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   
 
 async function handleSubmit(event) {
     event.preventDefault();
-
-   try {
-    const url = 'https://fsa-jwt-practice.herokuapp.com/signup'
-    const data = JSON.stringify({ username , password }); 
-    const response = await fetch(url,
-              { 
-                method: 'POST', 
-                headers: { 
-                  "Content-Type": 'application/json' 
-                }, 
-                body: JSON.stringify({ 
-                  username: "some-username", 
-                  password: "super-secret-999" 
-                }) 
-              })
-
-    } catch (error) {
-      setError(error.message);
-    }
-    
-    
+    console.log(username);
+    console.log(password);
+    setUsername(''); // resets the state value
+    setPassword('');  
   }
     return ( 
     
     <div>
        <h2>Sign Up!</h2>
-       {error && <p>{error}</p>}
+      
        <form onSubmit={handleSubmit}>
-        <label>
-        Username:{" "}
+        <label htmlFor='username'>Username</label>
           <input
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={username} // controls the input value
+            type="username"
+            id="username"
+            onChange={(e) =>setUsername(e.target.value)
+            }
           />
-        </label>
-        <label>
-          Password:{" "}
+        <label htmlFor='password'>Password</label>
           <input
-            type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-           </label>
-        <button>Submit</button>
+            type="password"
+            id="password"
+            onChange={(e) => setPassword(e.target.value)
+             }
+             />
+             <p>{errorMessage}</p>
+        <button type ="submit">Sign Up</button>
     </form>
     </div>
-    )
-}
+    )}
