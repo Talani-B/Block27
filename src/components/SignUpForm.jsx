@@ -2,12 +2,14 @@ import { useState } from 'react';
 import '../App.css'
 
 export default function SignUpForm() { 
-const [username, setUsername] = useState("");
-const [password, setPassword] = useState("");
-const [error, setError] = useState(null);
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
 async function handleSubmit(event) {
     event.preventDefault();
+
    try {fetch('https://fsa-jwt-practice.herokuapp.com/signup', 
               { 
                 method: "POST", 
