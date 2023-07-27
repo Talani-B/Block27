@@ -6,7 +6,8 @@ import './App.css'
 
 function App() {
   const [token, setToken] = useState(null);
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   return (
     <>
       <SignUpForm token={token} setToken={setToken} />

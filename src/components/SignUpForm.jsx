@@ -12,11 +12,29 @@ export default function SignUpForm() {
 
 async function handleSubmit(event) {
     event.preventDefault();
-    console.log(username);
-    console.log(password);
-    setUsername(''); // resets the state value
-    setPassword('');
-   }
+console.log(username);
+console.log(password);
+setUsername('');
+setPassword('');
+   try {
+    const response = await fetch(`{$BASE_URL}`,
+              { 
+                method: 'POST', 
+                headers: { 
+                  "Content-Type": 'application/json' 
+                }, 
+                body: JSON.stringify({ 
+                  username: username, 
+                  password: password, 
+                }) 
+              })
+
+    } catch (error) {
+      setError(error.message);
+    }
+    
+    
+  }
     return ( 
     
     <div>
@@ -38,10 +56,11 @@ async function handleSubmit(event) {
             value={password}
             type="password"
             id="password"
-            onChange={(e) => setPassword(e.target.value)
-             }
+            onChange={(e) => {
+              console.log(e.target.value);
+              setPassword(e.target.value)
+             }}
              />
-             
         <button type ="submit">Sign Up</button>
     </form>
     </div>
