@@ -41,6 +41,7 @@ async function handleSubmit(event) {
             onChange={(e) => setPassword(e.target.value)
              }
              />
+             
         <button type ="submit">Sign Up</button>
     </form>
     </div>
