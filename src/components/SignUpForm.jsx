@@ -10,20 +10,24 @@ export default function SignUpForm() {
 async function handleSubmit(event) {
     event.preventDefault();
 
-   try {fetch('https://fsa-jwt-practice.herokuapp.com/signup', 
+   try {
+    const url = 'https://fsa-jwt-practice.herokuapp.com/signup', 
+    const data = JSON.stringify({ username , password }); 
+    const response = await fetch(url,
               { 
-                method: "POST", 
+                method: 'POST', 
                 headers: { 
-                  "Content-Type": "application/json" 
+                  "Content-Type": 'application/json' 
                 }, 
-                body: JSON.stringify({ 
-                  username: "some-username", 
-                  password: "super-secret-999" 
-                }) 
-              })
+                body:data });
+                
+                if (!response.ok) { 
+                 throw new Error('Something went wrong');
+                }
+            // Handle the response here
 
-    } catch (error) {
-      setError(error.message);
+          } catch (error) {
+      console.error(error);
     }
     
   }
