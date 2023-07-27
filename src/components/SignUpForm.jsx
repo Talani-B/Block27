@@ -13,7 +13,7 @@ async function handleSubmit(event) {
     event.preventDefault();
 
    try {
-    const url = 'https://fsa-jwt-practice.herokuapp.com/signup', 
+    const url = 'https://fsa-jwt-practice.herokuapp.com/signup'
     const data = JSON.stringify({ username , password }); 
     const response = await fetch(url,
               { 
