@@ -4,9 +4,9 @@ import '../App.css'
 
 export default function SignUpForm() { 
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState(null);
 
   
 
@@ -15,21 +15,23 @@ async function handleSubmit(event) {
     console.log(username);
     console.log(password);
     setUsername(''); // resets the state value
-    setPassword('');  
-  }
+    setPassword('');
+   }
     return ( 
     
     <div>
        <h2>Sign Up!</h2>
-      
+       {error && <p>{error}</p>}
        <form onSubmit={handleSubmit}>
         <label htmlFor='username'>Username</label>
           <input
             value={username} // controls the input value
             type="username"
             id="username"
-            onChange={(e) =>setUsername(e.target.value)
-            }
+            onChange={(e) => {
+              console.log(e.target.value);
+              setUsername(e.target.value)
+            }}
           />
         <label htmlFor='password'>Password</label>
           <input
@@ -39,7 +41,6 @@ async function handleSubmit(event) {
             onChange={(e) => setPassword(e.target.value)
              }
              />
-             <p>{errorMessage}</p>
         <button type ="submit">Sign Up</button>
     </form>
     </div>
